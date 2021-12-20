@@ -49,13 +49,17 @@ public class Doctor extends User {
             System.out.println("1. Add Medications (1)\n2. Set last check-in (2)\n3. Set Blood Pressure (3)" +
                     "\n4.Back to All Patients (4)\n5.Exit (5)");
             choice = scanner.nextInt();
+
             if (choice == 1) { //Add medications
                 String addChoice= "n";
+
                 do{
                     System.out.print("Enter medication name: ");
                     String medication= scanner.next();
                     System.out.print("Enter medication description: ");
-                    String desc = scanner.next();
+                    scanner.nextLine();
+                    String desc = scanner.nextLine();
+                    System.out.println(desc);
                     patient.setMedications(medication, desc);
                     System.out.print( "add another? (y or n) ");
                     addChoice= scanner.next();
@@ -88,10 +92,10 @@ public class Doctor extends User {
             System.out.println("1. See All Patients (1)\n2. Add Patient(2)\n3. Remove Patient (3)\n4. Exit (4)");
             choice = scanner.nextInt();
             if (choice == 1) {
-               while(doctorPatients.isEmpty() && choice == 1){
-                   System.out.println("ERROR no patients in system \nPress 2 to continue");
-                  choice = scanner.nextInt();
-               }
+                while(doctorPatients.isEmpty() && choice == 1){
+                    System.out.println("ERROR no patients in system \nPress 2 to continue");
+                    choice = scanner.nextInt();
+                }
                 if(!doctorPatients.isEmpty()){
                     displayPatient();
                 }
