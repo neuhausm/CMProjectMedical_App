@@ -46,7 +46,7 @@ public class User {
         int choice=0;
         while(choice!=6) {
             System.out.println("1. Current Medications (1)\n2. Last Check-In (2)\n3. Blood Pressure (3)" +
-                    "\n4. Back to All Patients (4) \n5. Set Up Zoom Meeting With Your Doctor(5) \n6. Exit (6)");
+                    "\n4. Set Up Zoom Meeting With Your Doctor(4)\n5. Back to All Patients (5)\n6. Exit (6)");
             choice = scanner.nextInt();
             if (choice==1){
                 patient.getMedications();
@@ -56,11 +56,10 @@ public class User {
             }
             else if (choice==3){
                 patient.getBP();
-            }
-            else if (choice==4){
-                displayPatient();
-            }else if (choice == 5){
+            } else if (choice == 4){
                 patient.setZoom();
+            }else if (choice==5){
+                displayPatient();
             }
         }}
 
