@@ -10,9 +10,7 @@ public class User {
     private ArrayList<Patient> patients = new ArrayList<Patient>();
     private Doctor currentDoctor;
 
-    //    public User(){
-//        patients = new ArrayList<Patient>();
-//    }
+
     public User(String userName, String userPassword){
         this.userName = userName;
         this.userPassword = userPassword;
@@ -24,9 +22,11 @@ public class User {
         this.currentDoctor = currentDoctor;
     }
 
-    public void addPatient(Patient patient){
+    public void addPatient(Patient patient) {
+
         patients.add(patient);
     }
+
     public void displayPatient(){
         for(int i=0;i<patients.size();i++){
             System.out.println("Patient Number "+(i+1)+"\n" +
@@ -45,8 +45,8 @@ public class User {
         Scanner scanner=new Scanner(System.in);
         int choice=0;
         while(choice!=6) {
-            System.out.println("1. Current Medications (1)\n2. Last check-in (2)\n3. Blood Pressure (3)" +
-                    "\n4.Back to All Patients (4) \n6.Exit (6)"); //5.Set up Zoom Meeting with your doctor(5)
+            System.out.println("1. Current Medications (1)\n2. Last Check-In (2)\n3. Blood Pressure (3)" +
+                    "\n4. Back to All Patients (4) \n5. Set Up Zoom Meeting With Your Doctor(5) \n6. Exit (6)");
             choice = scanner.nextInt();
             if (choice==1){
                 patient.getMedications();
@@ -79,14 +79,16 @@ public class User {
             System.out.println("1. See All Patients (1)\n2. Add Patient(2)\n3. Exit (3)");
             choice = scanner.nextInt();
             if (choice == 1) {
-                displayPatient();
+                if(!patients.isEmpty()){
+                    displayPatient();
+                }
+                else{
+                    System.out.println("ERROR no patients in system \nPress 2 to continue");
+                    choice = scanner.nextInt();
+                }
             } else if (choice == 2) {
-                System.out.print("Enter Patient Name: ");
-                String name = scanner.next();
-               // scanner.next();
                 System.out.print("Enter Patient ID: ");
                 int Id = scanner.nextInt();
-                //Patient patient = new Patient(Id, name);
 
                 ArrayList<Patient> doctorPatients = currentDoctor.getDoctorPatients();
                 int count = 0;

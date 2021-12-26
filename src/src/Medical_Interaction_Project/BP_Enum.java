@@ -1,0 +1,5 @@
+package Medical_Interaction_Project;
+
+public enum BP_Enum {
+    NORMAL, ELEVATED, HYPERTENSION_STAGE1, HYPERTENSION_STAGE2, HYPERTENSIVE_CRISIS
+}

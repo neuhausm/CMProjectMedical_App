@@ -8,6 +8,7 @@ public class Patient {
     private ArrayList<String> medications;
     private String lastCheckIn;
     private String BP;
+    private BP_Enum BPdesc;
 
 
     public Patient(int patientID, String patientName){
@@ -24,7 +25,6 @@ public class Patient {
         return patientID;
     }
 
-    //patient list
 
     public void setMedications(String medication, String desc){
 
@@ -37,19 +37,18 @@ public class Patient {
         System.out.println("Last Check-In: " + lastCheckIn);
     }
 
-    public void setBP(String BP){this.BP =BP;}
+    public void setBP(String BP, BP_Enum BPdesc){
+        this.BP =BP;
+        this.BPdesc = BPdesc;
+    }
     public void getBP(){
-        System.out.println("BP: " + BP);
+        System.out.println("BP: " + BP + " mm Hg");
+        System.out.println("BP Status: " + BPdesc);
     }
 
     public void getMedications(){
        System.out.println(medicationsToString());
     }
-    /**
-     public String getMedicationList(){
-     return medications.medicationsToString(medications);
-     }**/
-
 
     public String medicationsToString(){
         StringBuilder str = new StringBuilder();
@@ -63,7 +62,7 @@ public class Patient {
     }
 
     public void setZoom(){
-        System.out.println("To request Zoom email Dr. Green at green@columbiamedical.com");
+        System.out.println("To request Zoom email Dr. Green at green@MediAssist.com");
 
     }
 

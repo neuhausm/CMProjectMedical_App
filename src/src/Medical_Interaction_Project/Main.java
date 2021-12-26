@@ -14,7 +14,7 @@ public class Main {
         Users.add(doctor); //adding doctor system
 
         while(true) {
-            System.out.println("Welcome to Patient Portal"); // change name to something better
+            System.out.println("Welcome to Medi-Assist Portal");
             do {
                 System.out.print("Sign Up (1) or Login (2)");
                 int choice = input.nextInt();
@@ -31,8 +31,6 @@ public class Main {
 
 
                 if (choice == 2) {
-                   // System.out.println("Doctor (1) or User (2)");
-                  //  int userTypeChoice = input.nextInt();
                     System.out.print("Enter User Name: ");
                     String userName = input.next();
                     System.out.print("Enter Password: ");
@@ -60,16 +58,6 @@ public class Main {
         System.out.println("ERROR Login Unsuccessful");
         return false;
     }
-
-
-    /**
-     public static void menu(){
-     Scanner input=new Scanner(System.in);
-     System.out.println("Menu: ");
-     System.out.println("1. "+ "View All Your Patients' Information\n"+ "2. Choose Patient to view\n "+"3. Add Patient");
-     int choice= input.nextInt();
-     patientMenu(choice);
-     }**/
 
 
 }

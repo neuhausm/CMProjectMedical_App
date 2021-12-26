@@ -13,12 +13,6 @@ public class Doctor extends User {
     public Doctor(String userName, String userPassword) {
         super(userName, userPassword);
         doctorPatients= new ArrayList<Patient>();
-        /*
-        doctorPatients.add(new Patient (111,"Max Williams"));
-        doctorPatients.add(new Patient (222,"Sarah Miller"));
-        doctorPatients.add(new Patient (333,"Rachel Weiss"));
-        doctorPatients.add(new Patient (444,"Charlie Green"));
-         */
     }
 
     public void addDoctorPatient(Patient patient){
@@ -59,7 +53,6 @@ public class Doctor extends User {
                     System.out.print("Enter medication description: ");
                     scanner.nextLine();
                     String desc = scanner.nextLine();
-                    System.out.println(desc);
                     patient.setMedications(medication, desc);
                     System.out.print( "add another? (y or n) ");
                     addChoice= scanner.next();
@@ -67,13 +60,42 @@ public class Doctor extends User {
                 while(addChoice=="y");
 
             } else if (choice == 2) { //get Check In
-                System.out.println("Enter time of last Check In: ");
+                System.out.print("Enter time of last Check In: ");
                 String checkIn = scanner.next();
                 patient.setLastCheckIn(checkIn);
             } else if (choice == 3) {
-                System.out.println("Enter Blood Pressure: ");
-                String BP = scanner.next();
-                patient.setBP(BP);
+                System.out.print("Enter Blood Pressure:\nEnter Systolic: ");
+                int systolic = scanner.nextInt();
+                while(systolic < 0){
+                    System.out.print("Systolic cannot be negative number, please re-enter data:");
+                    systolic = scanner.nextInt();
+                }
+                System.out.print("Enter Diastolic: ");
+                int diastolic = scanner.nextInt();
+                while(diastolic < 0){
+                    System.out.print("Diastolic cannot be negative number, please re-enter data:");
+                    diastolic = scanner.nextInt();
+                }
+                String BP = (systolic + "/" + diastolic);
+
+                //getting BP desc
+                BP_Enum BPdesc = null;
+                if(systolic < 120 && diastolic < 80){
+                    BPdesc = BP_Enum.NORMAL;
+                }
+                else if(systolic >=120 && systolic <= 129 && diastolic < 80){
+                    BPdesc = BP_Enum.ELEVATED;
+                }
+                else if(systolic >=130 && systolic <= 139 || diastolic >=80 && diastolic <= 89){
+                    BPdesc = BP_Enum.HYPERTENSION_STAGE1;
+                }
+                else if(systolic >=140 && systolic <180 || diastolic >=90 && diastolic <120){
+                    BPdesc = BP_Enum.HYPERTENSION_STAGE2;
+                }
+                else if(systolic >=181 || diastolic >= 120){
+                    BPdesc = BP_Enum.HYPERTENSIVE_CRISIS;
+                }
+                patient.setBP(BP, BPdesc);
             } else if (choice == 4) {
                 displayPatient();
             }
@@ -101,19 +123,26 @@ public class Doctor extends User {
                 }
             } else if (choice == 2) {
                 System.out.print("Enter Patient Name: ");
-                String name = scanner.next();
+                scanner.nextLine();
+                String name = scanner.nextLine();
                 int Id = currID;
                 System.out.print("Patient ID: " + Id + "\n");
                 Patient patient = new Patient(Id, name);
                 addDoctorPatient(patient);
                 currID++;
             } else if (choice == 3) {
-                System.out.print("Enter Patient ID: ");
-                int Id = scanner.nextInt();
-                for (int j = 0; j < doctorPatients.size(); j++) {
-                    if (doctorPatients.get(j).getPatientID() == Id) {
-                        removeDoctorPatient(doctorPatients.get(j));
+                if (!doctorPatients.isEmpty()) {
+                    System.out.print("Enter Patient ID: ");
+                    int Id = scanner.nextInt();
+                    for (int j = 0; j < doctorPatients.size(); j++) {
+                        if (doctorPatients.get(j).getPatientID() == Id) {
+                            removeDoctorPatient(doctorPatients.get(j));
+                        }
                     }
+                }
+                else{
+                    System.out.println("ERROR no patients in system \nPress 2 to continue");
+                    choice = scanner.nextInt();
                 }
             }
 
