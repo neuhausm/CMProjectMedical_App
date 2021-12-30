@@ -57,7 +57,7 @@ public class Doctor extends User {
                     System.out.print( "add another? (y or n) ");
                     addChoice= scanner.next();
                 }
-                while(addChoice=="y");
+                while(addChoice.equals("y"));
 
             } else if (choice == 2) { //get Check In
                 System.out.print("Enter time of last Check In: ");
@@ -137,8 +137,10 @@ public class Doctor extends User {
                     for (int j = 0; j < doctorPatients.size(); j++) {
                         if (doctorPatients.get(j).getPatientID() == Id) {
                             removeDoctorPatient(doctorPatients.get(j));
+                            System.out.println("Patient Removed");
                         }
                     }
+
                 }
                 else{
                     System.out.println("ERROR no patients in system \nPress 2 to continue");

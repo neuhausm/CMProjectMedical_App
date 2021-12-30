@@ -90,19 +90,27 @@ public class User {
                 int Id = scanner.nextInt();
 
                 ArrayList<Patient> doctorPatients = currentDoctor.getDoctorPatients();
-                int count = 0;
-                for(int i =0; i<doctorPatients.size(); i++){
-                    if(doctorPatients.get(i).getPatientID() == Id){
-                        addPatient(doctorPatients.get(i));
-                        count++;
+                boolean alreadyThere = false;
+                for(int j=0; j<patients.size(); j++){
+                    if(patients.get(j).getPatientID() == Id){
+                        System.out.println("Patient already added to your account");
+                        alreadyThere = true;
                     }
                 }
-              if (count == 0){
-                  System.out.println("Patient Not Found in System");
-              }else{
-                  System.out.println("Patient Added");
-              }
-
+                if (!alreadyThere) {
+                    int count = 0;
+                    for (int i = 0; i < doctorPatients.size(); i++) {
+                        if (doctorPatients.get(i).getPatientID() == Id) {
+                            addPatient(doctorPatients.get(i));
+                            count++;
+                        }
+                    }
+                    if (count == 0) {
+                        System.out.println("Patient Not Found in System");
+                    } else {
+                        System.out.println("Patient Added");
+                    }
+                }
             }
         }
 

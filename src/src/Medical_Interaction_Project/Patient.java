@@ -55,7 +55,7 @@ public class Patient {
         str.append("Medications:\n");
         for (int i =0; i<medications.size(); i++){
            if (i%2 == 0 ) {
-               str.append(medications.get(i) + " - " + medications.get(i + 1));
+               str.append(medications.get(i) + " - " + medications.get(i + 1) +"\n");
            }
         }
         return str.toString();
